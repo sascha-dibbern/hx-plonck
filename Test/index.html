@@ -20,6 +20,7 @@ h1.toptitle {
 </head>
 <body>
 	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+	<script src="../hx-plonk.js"></script>
 
 <script>
   PLONKTREE='*'
@@ -42,124 +43,8 @@ h1.toptitle {
 		'@' : 'tree-2',
 		'treename' : 'tree-3.html'
 	}  
-
-  }
- 
-   // Todo
-   // 1) Add idempotency calls -> run htmx only once
- 
-  function setPLONKTREE(selectorid) {
-	let field = document.getElementById(selectorid);
-	PLONKTREE=field.value;
-  }
+  };
   
-  function makePlonkForrestSelectorsHTML() {
-	const sortedPlonktreeNames = Object.keys(PLONKFORREST).sort();
-	var result="";
-	for (let i = 0; i < sortedPlonktreeNames.length; i++) {
-		let plonktreename=sortedPlonktreeNames[i];
-		let selector=`<option value="${plonktreename}">${plonktreename}</option>\n`;
-		result=result+selector;
-	}
-	return result;
-  }
-  
-  function findPlonkTreeSelectionTags() {
-  let result=[];
-	let plonkselectiontags=document.getElementsByTagName('plonktreeselection');
-	for (let i = 0; i < plonkselectiontags.length; i++) {
-		let tag=plonkselectiontags[i];
-		result.push(tag);
-	}
-	return result;
-  }
- 
-  function buildPlonkTreeSelection () {
-	let plonkselectiontags=findPlonkTreeSelectionTags();
-	for (let i = 0; i < plonkselectiontags.length; i++) {
-		let plonkforrestselectors=makePlonkForrestSelectorsHTML();
-		let tag=plonkselectiontags[i];
-		tag.innerHTML=`<label for="plonktrees">Scenario:</label>
-		<select id="plonktreeselection${i}" name="plonktrees" onchange="setPLONKTREE('plonktreeselection${i}')">${plonkforrestselectors}</select>`+tag.innerHTML;
-	}
-  }
-
-  document.addEventListener('DOMContentLoaded', buildPlonkTreeSelection); 
- 
-  function recursiveFindPlonkPath(currentplonktree,plonkpath) {
-	let plonktreeobject=PLONKFORREST[currentplonktree];	
-	
-	if (plonkpath in plonktreeobject) {
-		return plonktreeobject[plonkpath];	
-	}
-	
-	if (currentplonktree=='*') {
-		// recursion can not go deeper
-		return "";
-	}
-	
-	if ('@' in plonktreeobject) { 
-		// The explicite parent(s) case for lookup
-		let parents=plonktreeobject['@'];
-		
-		// Single parent case
-		if (! Array.isArray(parents)) {
-			parents=[plonktreeobject['@']];
-		}
-
-		
-		for (let i = 0; i < parents.length; i++) {
-			let foundurl=recursiveFindPlonkPath(parents[i],plonkpath);
-			if (foundurl=='') {
-				// else proceed to next parent
-				continue;
-			}
-			return foundurl;
-		}
-	} else { 
-		// the implicite lookup case of the default root parent 
-		return recursiveFindPlonkPath('*',plonkpath)	;
-	}
-  }
-
-  function findPlonkPath(currentplonktree,plonkpath) {
-	path=recursiveFindPlonkPath(currentplonktree,plonkpath);
-
-	if (path=='') {
-		// Todo: add visual error at HTMX-tag
-		console.error("Plonk-error: Plonk path '" + plonkpath + "' not found in plonk tree "+currentplonktree+" and parent trees");
-		// just return empty path to trigger HTMX
-	}
-	return path
-  }
-  
-  htmx.defineExtension('plonk', {
-    onEvent : function(name, evt) {
-        console.log("Fired event before: " + name, evt);
-
-		if (evt.type!='htmx:configRequest') {
-			return ;
-		}
-
-		let originalpath = evt.detail.path;
-		if (!originalpath.endsWith('@plonk')) {
-			return ;
-		}
-		plonkkey=originalpath.slice(0,-6);
-
-		let currentplonktree=PLONKTREE;
-		let hx_plonktree_attr=evt.detail.elt.attributes.getNamedItem('hx-plonktree');
-		if (hx_plonktree_attr) {
-			currentplonktree=hx_plonktree_attr.value
-		}
-		
-		//plonktreeobject=PLONKFORREST[currentplonktree];
-		//evt.detail.path=plonktreeobject[plonkkey]		
-		evt.detail.path=findPlonkPath(currentplonktree,plonkkey);
-		
-		console.log("Found path: " + evt.detail.path);
-    }
-  })
 </script>
 
 	<h1>Plonk tests</h1>
