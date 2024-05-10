@@ -1,25 +1,3 @@
-PLONCKTREE='*'
-PLONCKFORREST={
-'*' : // baseline and default tree
-{
-	'response-a' : 'response1.html',
-	'response-b' : 'response2.html',
-	'treename' : 'tree-star.html'
-},
-
-'tree-2' : // a tree with overrides and default parent
-{
-	'response-a' : 'response2.html',
-	'treename' : 'tree-2.html'
-},
-
-'tree-3' : // a tree with defined parent
-{
-	'@' : 'tree-2',
-	'treename' : 'tree-3.html'
-}  
-
-}
 
 // Todo
 // 1) Add idempotency calls -> run htmx only once
