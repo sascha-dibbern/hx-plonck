@@ -20,7 +20,7 @@ h1.toptitle {
 </head>
 <body>
 	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
-	<script src="../hx-plonk.js"></script>
+	<script src="../hx-plonck.js"></script>
 
 <script>
 var PLONCKTREE='*'
@@ -47,11 +47,11 @@ var PLONCKFORREST={
   
 </script>
 
-	<h1>Plonk tests</h1>
+	<h1>Plonck tests</h1>
 	<div>
-		<h2>Test 1: Simpel test</h2>
+		<h2>Test 1: Simple test</h2>
 		<div>
-			<form hx-get="response-a@plonk" hx-target="#test1response" hx-ext="plonk">
+			<form hx-get="response-a@plonck" hx-target="#test1response" hx-ext="plonck">
 				
 				<button >Do it</button>
 			</form>
@@ -65,9 +65,9 @@ var PLONCKFORREST={
 	<br>
 
 	<div>
-		<h2>Test 2: Use explicit defined Plonk tree</h2>
+		<h2>Test 2: Use explicit defined Plonck tree</h2>
 		<div>
-			<form hx-get="treename@plonk" hx-target="#test2response" hx-ext="plonk" hx-plonktree="tree-2">
+			<form hx-get="treename@plonck" hx-target="#test2response" hx-ext="plonck" hx-ploncktree="tree-2">
 				<button >Do it</button>
 			</form>
 			"tree-2" is expected
@@ -79,9 +79,9 @@ var PLONCKFORREST={
 	</div>	
 	<br>
 	<div>
-		<h2>Test 3: Use explicit defined Plonk tree with deep parents</h2>	
+		<h2>Test 3: Use explicit defined Plonck tree with deep parents</h2>	
 		<div>
-			<form hx-get="response-b@plonk" hx-target="#test3response" hx-ext="plonk" hx-plonktree="tree-3">
+			<form hx-get="response-b@plonck" hx-target="#test3response" hx-ext="plonck" hx-ploncktree="tree-3">
 				<button >Do it</button>
 			</form>
 			"Response-2" is expected
@@ -94,9 +94,9 @@ var PLONCKFORREST={
 	<br>
 
 	<div>
-		<h2>Test 4: Use selection defined scenario (Plonk tree)</h2>	
+		<h2>Test 4: Use selection defined scenario (Plonck tree)</h2>	
 		<div>
-			<form hx-get="treename@plonk" hx-target="#testselectionresponse" hx-ext="plonk">
+			<form hx-get="treename@plonck" hx-target="#testselectionresponse" hx-ext="plonck">
 				
 				<ploncktreeselection/>
 				<button >Do it</button>
