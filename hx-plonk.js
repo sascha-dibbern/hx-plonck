@@ -106,9 +106,7 @@ onEvent : function(name, evt) {
 	if (hx_ploncktree_attr) {
 		currentploncktree=hx_ploncktree_attr.value
 	}
-	
-	//ploncktreeobject=PLONCKFORREST[currentploncktree];
-	//evt.detail.path=ploncktreeobject[plonkkey]		
+		
 	evt.detail.path=findPlonckPath(currentploncktree,plonkkey);
 	
 	console.log("Found path: " + evt.detail.path);
