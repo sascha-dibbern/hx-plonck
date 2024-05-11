@@ -32,25 +32,25 @@ Define the values for current plonck-tree to start the prototype and the plonck-
         var PLONCKFORREST={
 	        '*' : // the baseline scenario and default tree named '*'
 	            {
-		            'add-item-to-basket' : 'item-in-basket.html',
-		            'remove-item-from-basket' : 'remove-item.html',
-                    ...
+		          'add-item-to-basket' : 'item-in-basket.html',
+		          'remove-item-from-basket' : 'remove-item.html',
+                  ...
 	            },
 	        'out of stock scenario' : // This tree inherits from '*', so some paths can be overridden
 	            {
-		            'add-item-to-basket' : 'out-of-stock-message.html',
+		          'add-item-to-basket' : 'out-of-stock-message.html',
 	            },
 	        'out of stock scenario, but offer later delivery' : // This tree inherits from 'out of stock scenario'
 	            {
-                    '@' : 'out of stock scenario', // This entry is not a scenario but a inheritance reference ('@' used as inheritance symbol) to the scenario 'out of stock scenario'
-		            'show later deliver offer' : 'later-deliver-offer-message.html',
+                  '@' : 'out of stock scenario', // This entry is not a scenario but a inheritance reference ('@' used as inheritance symbol) to the scenario 'out of stock scenario'
+		          'show later deliver offer' : 'later-deliver-offer-message.html',
 	            }
             };
     </script>
 
-The scenario plonck-tree called `'*'` is the baseline scenario for the SPA prototype. Other scenarios (plonck-trees) will per default inherit from `*` as the plonk-tree `'out of stock scenario'` does here. 
+The scenario plonck-tree called `'*'` is the baseline scenario for the SPA prototype. Other scenarios (plonck-trees) will per default inherit from `*` as the plonck-tree `'out of stock scenario'` does here. 
 Each scenario plonck-tree will have multiple entries, that are mappings between the __abstracted HTMX request-path__ (hash-map key) and the real HTMX request-path (hash-map value). As an exception to that rule the hash-map key `'@'` is used to define an explicite inheritance of an scenario plonck-tree (child) to another scenario plonck-tree (parent).
-Inherited scenario plonck-trees will have every HTMX request-path mapping from it's parent. These can then be overridden in the child plonk-tree if necessary to fullfill the scenario context.
+Inherited scenario plonck-trees will have every HTMX request-path mapping from it's parent. These can then be overridden in the child plonck-tree if necessary to fullfill the scenario context.
 Multiple inheritance is also possible and would look like
 
     'a complex scenario' : 
