@@ -17,6 +17,7 @@ The outcome of the prototyped SPA-emulation will be controllable by a given inpu
 
 ## Usage
 
+### 1. Required components
 Import HTMX and hx-plonck.js to use the hx-plonck features in the SPA-prototype page:
 
     <html> ...
@@ -25,6 +26,7 @@ Import HTMX and hx-plonck.js to use the hx-plonck features in the SPA-prototype 
 	    <script src="hx-plonck.js"></script>
         ...
 
+### 2. Definitions of scenarios
 Define the values for current plonck-tree to start the prototype and the plonck-forest of scenarios for all outcomes:
 
     <script>
@@ -55,8 +57,13 @@ Multiple inheritance is also possible and would look like
 
     'a complex scenario' : 
         {
-            '@' : [ 'low-priority scenario', 'high-priority scenario' ],
+            '@' : [ 'high-priority scenario', 'low-priority scenario' ],
             ...
         }
 
-In that case request-mapings from 'high-priority scenario' will override request-mapings from 'low-priority scenario' too.
+In that case explicite defined request-mapings from 'high-priority scenario' will override the request-mapings from 'low-priority scenario' too.
+
+### 3. Selection of the current applicable scenario
+
+Last but not least the prototype SPA has to contain a selection mechanism, which the user uses to select the scenario to be applied to the SPA prototype. 
+This mechanism is created by applying the tag `<ploncktreeselection/>` in a discrete place in to the HTML-document's body. The user will then see a dropdown-selection box to choose a given "Scenario" before continueing with the other SPA prototype activities.
