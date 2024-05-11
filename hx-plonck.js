@@ -1,6 +1,7 @@
 
-// Todo
+// Ideas
 // 1) Add idempotency calls -> run htmx only once
+// 2) '*'-globbing in abstract-path for override all/selected inherited paths
 
 function setPLONCKTREE(selectorid) {
 let field = document.getElementById(selectorid);
