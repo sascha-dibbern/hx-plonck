@@ -10,7 +10,7 @@ The outcome of the prototyped SPA-emulation will be controllable by a given inpu
 
 ## Defintions
  * __abstracted HTMX request-path__ is a HTMX-tag path, that is formatted as "...@plonck". This abstracted path will translated in hx-plonck to a real URI to be interpreted by HTMX further in the process.
- * __plonck-forrest__ is a java-script hash-map that define the mapping between various scenarios and the plonck trees representing the outcome of the given scenarios
+ * __plonck-forest__ is a java-script hash-map that define the mapping between various scenarios and the plonck trees representing the outcome of the given scenarios
  * __plonck-tree__ is a java-script hash-map that defines the mapping between the abstract paths and the html-fragment URIs. A plonck-tree is named by a __scenario__
  * __[protovibe](https://github.com/sascha-dibbern/protovibe)__ is a process to prototype single page web-applications in regard to visualization and behaviour
  * __scenario__ is the means to define a set of one or more use-cases applicable to use-case situations to a SPA. A __scenario__ is in hx-plonck the name of a given __plonck-tree__.
@@ -25,11 +25,11 @@ Import HTMX and hx-plonck.js to use the hx-plonck features in the SPA-prototype 
 	    <script src="hx-plonck.js"></script>
         ...
 
-Define the values for current plonck-tree to start the prototype and the plonck-forrest of scenarios for all outcomes:
+Define the values for current plonck-tree to start the prototype and the plonck-forest of scenarios for all outcomes:
 
     <script>
         var PLONCKTREE='*'; // Current plonck-tree when the SPA is started
-        var PLONCKFORREST={
+        var PLONCKFOREST={
 	        '*' : // the baseline scenario and default tree named '*'
 	            {
 		          'add-item-to-basket' : 'item-in-basket.html',
