@@ -67,3 +67,42 @@ In that case explicite defined request-mapings from 'high-priority scenario' wil
 
 Last but not least the prototype SPA has to contain a selection mechanism, which the user uses to select the scenario to be applied to the SPA prototype. 
 This mechanism is created by applying the tag `<ploncktreeselection/>` in a discrete place in to the HTML-document's body. The user will then see a dropdown-selection box to choose a given "Scenario" before continueing with the other SPA prototype activities.
+
+### 4. Summa summarum
+
+So a sceleton-example of a hx-plonck.js based SPA prototype could look like:
+
+    <html> ...
+      <body>
+	    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+	    <script src="hx-plonck.js"></script>
+        ...
+        <script>
+            var PLONCKTREE='*'; // Current plonck-tree when the SPA is started
+            var PLONCKFOREST={
+	            '*' : // the baseline scenario and default tree named '*'
+	                {
+		              'add-item-to-basket' : 'item-in-basket.html',
+		              'remove-item-from-basket' : 'remove-item.html',
+                      ...
+	                },
+	            'out of stock scenario' : // This tree inherits from '*', so some paths can be overridden
+	                {
+		              'add-item-to-basket' : 'out-of-stock-message.html',
+	                },
+	            'out of stock scenario, but offer later delivery' : // This tree inherits from 'out of stock scenario'
+	                {
+                      '@' : 'out of stock scenario', // This entry is not a scenario but a inheritance reference ('@' used as inheritance symbol) to the scenario 'out of stock scenario'
+		              'show later deliver offer' : 'later-deliver-offer-message.html',
+	                },
+		        ...			
+                };
+        </script>
+        ... <!-- Your HTMXed HTML --> ..
+	    <ploncktreeselection/>
+	  </body>
+	</html>
+	
+## Examples
+
+Other examples of how to use hx-plonck.js for SPA protoypes will / can be found in the examples area of [protovibe](https://github.com/sascha-dibbern/protovibe). A very minimal and just proof of functionality example can also found in `Test/index.html` of this repository.
