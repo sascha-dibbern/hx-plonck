@@ -1,4 +1,9 @@
-
+//
+// Origin: https://github.com/sascha-dibbern/hx-plonck
+// Version: v0.6
+// Author: Sascha dibbern
+// License: BSD 3-Clause License (see https://github.com/sascha-dibbern/hx-plonck)
+//
 // Ideas
 // 1) Add idempotency calls -> run htmx only once
 // 2) '*'-globbing in abstract-path for override all/selected inherited paths
