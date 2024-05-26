@@ -29,7 +29,8 @@ var PLONCKFOREST={
 	{
 		'response-a' : 'response1.html',
 		'response-b' : 'response2.html',
-		'treename' : 'tree-star.html'
+		'treename' : 'tree-star.html',
+		'showplid' : 'showplid.html'
 	},
 
 	'tree-2' : // a tree with overrides and default parent
@@ -48,63 +49,147 @@ var PLONCKFOREST={
 </script>
 
 	<h1>Plonck tests</h1>
-	<div>
-		<h2>Test 1: Simple test</h2>
-		<div>
-			<form hx-get="response-a@plonck" hx-target="#test1response" hx-ext="plonck">
-				
-				<button >Do it</button>
-			</form>
-			"Response-1" is expected
-			<br>
-		</div>
-		<div id="test1response">
-		Unfilled response area
-		</div>	
-	</div>
-	<br>
 
 	<div>
-		<h2>Test 2: Use explicit defined Plonck tree</h2>
+		<h2>Test 1: Use selection defined scenario (Plonck tree)</h2>	
 		<div>
-			<form hx-get="treename@plonck" hx-target="#test2response" hx-ext="plonck" hx-ploncktree="tree-2">
-				<button >Do it</button>
-			</form>
-			"tree-2" is expected
-			<br>
-		</div>
-		<div id="test2response">
-		Unfilled response area
-		</div>	
-	</div>	
-	<br>
-	<div>
-		<h2>Test 3: Use explicit defined Plonck tree with deep parents</h2>	
-		<div>
-			<form hx-get="response-b@plonck" hx-target="#test3response" hx-ext="plonck" hx-ploncktree="tree-3">
-				<button >Do it</button>
-			</form>
-			"Response-2" is expected
-			<br>		
-		</div>
-		<div id="test3response">
-		Unfilled response area
-		</div>	
-	</div>		
-	<br>
-
-	<div>
-		<h2>Test 4: Use selection defined scenario (Plonck tree)</h2>	
-		<div>
-			<form hx-get="treename@plonck" hx-target="#testselectionresponse" hx-ext="plonck">
+			<form hx-get="treename@plonck" hx-target="#test1response" hx-ext="plonck">
 				
 				<ploncktreeselection/>
 				<button >Do it</button>
 			</form>
 			The choosen sceneario name is expected
 			<br>		</div>
-		<div id="testselectionresponse">
+		<div id="test1response">
 		Unfilled response area
 		</div>	
 	</div>		
+	<br>
+	
+	<div>
+		<h2>Test 2: Simple test</h2>
+		<div>
+			<form hx-get="response-a@plonck" hx-target="#test2response" hx-ext="plonck">
+				
+				<button >Do it</button>
+			</form>
+			"Response-1" is expected
+			<br>
+		</div>
+		<div id="test2response">
+		Unfilled response area
+		</div>	
+	</div>
+	<br>
+
+	<div>
+		<h2>Test 3: Use explicit defined Plonck tree</h2>
+		<div>
+			<form hx-get="treename@plonck" hx-target="#test3response" hx-ext="plonck" hx-ploncktree="tree-2">
+				<button >Do it</button>
+			</form>
+			"tree-2" is expected
+			<br>
+		</div>
+		<div id="test3response">
+		Unfilled response area
+		</div>	
+	</div>	
+	<br>
+	
+	<div>
+		<h2>Test 4: Use explicit defined Plonck tree with deep parents</h2>	
+		<div>
+			<form hx-get="response-b@plonck" hx-target="#test4response" hx-ext="plonck" hx-ploncktree="tree-3">
+				<button >Do it</button>
+			</form>
+			"Response-2" is expected
+			<br>		
+		</div>
+		<div id="test4response">
+		Unfilled response area
+		</div>	
+	</div>		
+	<br>
+
+	<div>
+		<h2>Test 5: Value substitution inside HTML-fragment</h2>	
+		<div>
+			<form hx-get="showplid@plonck" hx-target="#test5response" hx-ext="plonck" pk-tags="PLONCK_ID=PLID">
+				<button >Do it</button>
+			</form>
+			A text with a "PLID" is expected
+			<br>		
+		</div>
+		<div id="test5response">
+		Unfilled response area
+		</div>	
+	</div>		
+	<br>
+	
+	<div>
+		<h2>Test 6: Value substitution inside HTML-fragment with increasing number sequence</h2>	
+		<div>
+			<form hx-get="showplid@plonck" hx-target="#test6response" hx-ext="plonck" pk-tags="PLONCK_ID=PLID:++">
+				<button >Do it</button>
+			</form>
+			A text with a "PLID..number..." is expected
+			<br>		
+		</div>
+		<div id="test6response">
+		Unfilled response area
+		</div>	
+	</div>		
+	<br>
+
+	<div>
+		<h2>Test 7: Value substitution inside HTML-fragment with current number in sequence</h2>	
+		<div>
+			<form hx-get="showplid@plonck" hx-target="#test7response" hx-ext="plonck" pk-tags="PLONCK_ID=PLID:#">
+				<button >Do it</button>
+			</form>
+			A text with a "PLID..unchanged number compared to test 6..." is expected
+			<br>		
+		</div>
+		<div id="test7response">
+		Unfilled response area
+		</div>	
+	</div>		
+	<br>
+
+	<div>
+		<h2>Test 8: Value substitution inside HTML-fragment with previous number in sequence</h2>	
+		<div>
+			<form hx-get="showplid@plonck" hx-target="#test8response" hx-ext="plonck" pk-tags="PLONCK_ID=PLID:-">
+				<button >Do it</button>
+			</form>
+			A text with a "PLID..previous number compared to test 6..." is expected
+			<br>		
+		</div>
+		<div id="test8response">
+		Unfilled response area
+		</div>	
+	</div>		
+	<br>
+
+	<div>
+		<h2>Test 9: Value substitution inside HTML-fragment, but the fragment get deleted when the counter goes to zero</h2>	
+		<div>
+			<form hx-get="showplid@plonck" hx-target="#test9response" hx-ext="plonck" pk-tags="PLONCK_ID=PLID:++">
+				<button >Count up</button>
+			</form>
+			A text with a "PLID..with a growing sequence number.." is expected
+			<br>		
+			<form hx-get="showplid@plonck" hx-target="#test9response" hx-ext="plonck" pk-tags="PLONCK_ID=PLID:--!">
+				<button >Count down</button>
+			</form>
+			A text with a "PLID..with a decreasing sequence number..." is expected. When the number turns zero thefragment will be empty.
+			<br>		
+		</div>
+		<div id="test9response">
+		Unfilled response area
+		</div>	
+	</div>		
+	<br>
+
 </body>
