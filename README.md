@@ -190,4 +190,5 @@ Other examples of how to use hx-plonck.js for SPA protoypes will / can be found 
  * Add idempotency calls so that running the htmx-action only once.
  * '*'-globbing in abstract-paths for overriding all/selected inherited paths.
  * Handling of 'futures'. A 'future' is a html-fragment that is loaded, but will first be shown when a given given condition it met.
+ * Adding progression counting annotations for elements that have issued htmx-actions
  
