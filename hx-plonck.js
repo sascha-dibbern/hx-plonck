@@ -1,6 +1,6 @@
 //
 // Origin: https://github.com/sascha-dibbern/hx-plonck
-// Version: v0.6
+// Version: v0.7.x
 // Author: Sascha dibbern
 // License: BSD 3-Clause License (see https://github.com/sascha-dibbern/hx-plonck)
 //
