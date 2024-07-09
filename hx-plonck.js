@@ -107,12 +107,19 @@ function findPlonckPath(currentploncktree,plonckpath) {
  */
  
 function parsePkRuleDefs(elt) {
-	let pktags_ruledefs = elt.attributes.getNamedItem("pk-tags").value.split(",");
 	let pktags = {};
+	let pktags_attr = elt.attributes.getNamedItem("pk-tags");
+	
+	// Case: Undefined "pk-tags" attribute => no tags used 
+	if (pktags_attr === null) {
+		return pktags;
+	}
+	
+	let pktags_ruledefs = elt.attributes.getNamedItem("pk-tags").value.split(",");
 	pktags_ruledefs.map( (rule) => {
 		let ruleparts = rule.split("=");
 		if (ruleparts.length<2) {
-			console.log("Illegal pk-tags rule-defintion. Needs a '='");
+			console.log("Illegal 'pk-tags'-attribute rule-defintion. Needs a '='");
 			return {};
 		}
 		let tag = ruleparts[0];
